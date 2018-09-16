@@ -1,0 +1,20 @@
+.bar-container{
+	position: relative;
+	height: 40px;
+	display: block;
+	width: 100%;
+}
+.loading-bar{
+	position: absolute;
+	display: block;
+	background: #000;
+	height: 100%;
+}
+.loading-bar.going{
+	animation: loading 60s linear;
+}
+
+@keyframes loading{
+	0% 	{width: 0;}
+	100% 	{width: 100%;}
+}

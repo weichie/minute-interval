@@ -1,0 +1,33 @@
+.timer{
+	position: absolute;
+	top: 0; right: 0;
+	bottom: 0; left: 0;
+	height: 100vh;
+}
+
+.counter{
+	position: absolute;
+	top: 50%; width: 100%;
+	transform: translateY(-50%);
+	text-align: center;
+}
+
+.counter h1{
+	font-size: 50px;
+}
+
+footer{
+	position: absolute;
+	bottom: 15px; left: 0;
+	width: 100%;
+	text-align: center;
+}
+footer a{
+	display: inline-block;
+	opacity: .7;
+	transition: opacity .3s ease;
+}
+footer a:hover 	{opacity: 1;}
+footer img{
+	max-width: 85px;
+}
