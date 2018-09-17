@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      total: 5,
+      total: 60,
       current: 0,
       seconds: '00',
       minutes: '01',
@@ -16,20 +16,31 @@ class App extends Component {
     }
     this.setStates = this.setStates.bind(this);
     this.updateCurrent = this.updateCurrent.bind(this);
+    this.resetCounter = this.resetCounter.bind(this);
     this.secondsRemaining; 
     this.tick = this.tick.bind(this);
   }
 
   componentDidMount(){
-    this.setStates();
+    this.secondsRemaining = this.state.minutes * 60;
+    this.setState({barClass: 'loading-bar going'});
+    this.tick();
+
+    setInterval(() => {this.updateCurrent()}, 60000);
+    let tickInterval = setInterval(() => {this.tick()}, 1000);
+  }
+
+  resetCounter(){
+    if(this.state.current < this.state.total){
+      this.setState({
+        seconds: '00',
+        minutes: '01',
+      });
+    }
   }
 
   setStates(){
-    setInterval(() => {this.updateCurrent()}, 60000);
-    setInterval(() => {this.tick()}, 1000);
-
-    this.secondsRemaining = this.state.minutes * 60;
-    this.setState({barClass: 'loading-bar going'});
+    
   }
 
   updateCurrent(){
@@ -42,17 +53,21 @@ class App extends Component {
   }
 
   tick(){
+    if(this.state.total <= this.state.current){
+      clearInterval(this.tickInterval);
+    }
+
     var min = Math.floor(this.secondsRemaining / 60);
     var sec = this.secondsRemaining - (min * 60);
 
+    if(min < 0){ min = 0; }
+
     if(sec < 10){
-      this.setState({seconds: "0" + this.state.seconds,});
+      this.setState({seconds: "0" + this.state.seconds});
     }
+
     if(min < 10){
-      this.setState({minutes: "0" + min,});
-    }
-    if(min <= 0){
-      this.setState({minutes: "00"});
+      this.setState({minutes: "0" + min});
     }
 
     this.setState({
@@ -61,7 +76,7 @@ class App extends Component {
     });
 
     if(min === 0 & sec === 0){
-      clearInterval(this.intervalHandle);
+      this.resetCounter();      
     }
 
     this.secondsRemaining--;
