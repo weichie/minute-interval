@@ -26,14 +26,12 @@ class Setup extends React.Component{
 
 	render(){
 		return(
-			<div className="Setup">
-				<h2>Test</h2>
+			<div className="setup">
+				<h2>For how many minutes would you like a counter?</h2>
 				<form onSubmit={this.handleSubmit}>
-					<input type="text" value={this.state.value} onChange={this.handleChange} />
-					<input type="submit" value="Submit" />
+					<input type="number" value={this.state.value} onChange={this.handleChange} />
+					<input type="submit" value="Start" />
 				</form>
-
-				<Link to="/start">Start</Link>
 			</div>
 		);
 	}
