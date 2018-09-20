@@ -14,7 +14,6 @@ class App extends Component {
       minutes: '01',
       barClass: 'loading-bar'
     }
-    this.setStates = this.setStates.bind(this);
     this.updateCurrent = this.updateCurrent.bind(this);
     this.resetCounter = this.resetCounter.bind(this);
     this.secondsRemaining; 
@@ -39,10 +38,6 @@ class App extends Component {
     }
   }
 
-  setStates(){
-    
-  }
-
   updateCurrent(){
     let current = this.state.current;
     if(current < this.state.total){
@@ -59,16 +54,6 @@ class App extends Component {
 
     var min = Math.floor(this.secondsRemaining / 60);
     var sec = this.secondsRemaining - (min * 60);
-
-    if(min < 0){ min = 0; }
-
-    if(sec < 10){
-      this.setState({seconds: "0" + this.state.seconds});
-    }
-
-    if(min < 10){
-      this.setState({minutes: "0" + min});
-    }
 
     this.setState({
       minutes: min,

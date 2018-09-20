@@ -23,6 +23,13 @@
 	opacity: .7;
 }
 
+a{
+	color: #044F67;
+	text-decoration: none;
+	display: inline-block;
+	margin-top: 50px;
+}
+
 footer{
 	position: absolute;
 	bottom: 15px; left: 0;
